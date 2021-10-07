@@ -3,13 +3,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const db_1 = require("../db/db");
 const resolvers = {
     Query: {
-        movies: () => (0, db_1.getMovies)(),
-        movie: (_, { id }) => (0, db_1.getById)(id)
+        movies: (_, { limit, rating }) => (0, db_1.getMovies)(limit, rating),
+        movie: (_, { id }) => (0, db_1.getMovie)(id),
+        suggestions: (_, { id }) => (0, db_1.getSuggestions)(id)
     },
-    Mutation: {
-        addMovie: (_, { name, score }) => (0, db_1.addMovie)(name, score),
-        deleteMovie: (_, { id }) => (0, db_1.deleteMovie)(id),
-    }
 };
 exports.default = resolvers;
 //# sourceMappingURL=resolvers.js.map
