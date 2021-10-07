@@ -1,46 +1,54 @@
 "use strict";
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getMovies = void 0;
-const API_URL = "https://yts.mx/api/v2/list_movies.json";
-const getMovies = (limit, rating) => __awaiter(void 0, void 0, void 0, function* () {
-    let movies = yield (yield fetch(`${API_URL}`)).json();
-    movies = movies.data.movies;
-    return movies;
-});
+exports.addMovie = exports.deleteMovie = exports.getById = exports.getMovies = void 0;
+let movies = [
+    {
+        id: 0,
+        name: "Star Wars = The new one",
+        score: 1
+    },
+    {
+        id: 1,
+        name: "Avengers - End Game",
+        score: 8
+    },
+    {
+        id: 2,
+        name: "The Godfather",
+        score: 99
+    },
+    {
+        id: 3,
+        name: "Logan",
+        score: 2
+    }
+];
+const getMovies = () => movies;
 exports.getMovies = getMovies;
-/*
-export const getById = (id:number) => {
-  const filteredMovies = movies.filter(movie => movie.id === id);
-  return filteredMovies[0];
-}
-
-export const deleteMovie = (id:number) => {
-  const cleanedMovies = movies.filter(movie => movie.id !== id);
-  if (movies.length > cleanedMovies.length) {
-    movies = cleanedMovies;
-    return true;
-  } else {
-    return false;
-  }
+const getById = (id) => {
+    const filteredMovies = movies.filter(movie => movie.id === id);
+    return filteredMovies[0];
 };
-
-export const addMovie = (name: string, score: number) => {
-  const newMovie = {
-    id: movies.length,
-    name,
-    score
-  };
-  movies.push(newMovie);
-  return newMovie;
+exports.getById = getById;
+const deleteMovie = (id) => {
+    const cleanedMovies = movies.filter(movie => movie.id !== id);
+    if (movies.length > cleanedMovies.length) {
+        movies = cleanedMovies;
+        return true;
+    }
+    else {
+        return false;
+    }
 };
-*/ 
+exports.deleteMovie = deleteMovie;
+const addMovie = (name, score) => {
+    const newMovie = {
+        id: movies.length + 1,
+        name,
+        score
+    };
+    movies.push(newMovie);
+    return newMovie;
+};
+exports.addMovie = addMovie;
 //# sourceMappingURL=db.js.map

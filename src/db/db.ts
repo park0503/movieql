@@ -1,19 +1,34 @@
-const API_URL = "https://yts.mx/api/v2/list_movies.json";
+let movies = [
+  {
+    id: 0,
+    name: "Star Wars = The new one",
+    score: 1
+  },
+  {
+    id: 1,
+    name: "Avengers - End Game",
+    score: 8
+  },
+  {
+    id: 2,
+    name: "The Godfather",
+    score: 99
+  },
+  {
+    id: 3,
+    name: "Logan",
+    score: 2
+  }
+];
 
+export const getMovies = () => movies;
 
-
-export const getMovies = async(limit:number, rating:number) => {
-  let movies = await (await fetch(`${API_URL}`)).json();
-  movies = movies.data.movies;
-  return movies;
-}
-/*
-export const getById = (id:number) => {
+export const getById = (id:Number) => {
   const filteredMovies = movies.filter(movie => movie.id === id);
   return filteredMovies[0];
 }
 
-export const deleteMovie = (id:number) => {
+export const deleteMovie = (id:Number) => {
   const cleanedMovies = movies.filter(movie => movie.id !== id);
   if (movies.length > cleanedMovies.length) {
     movies = cleanedMovies;
@@ -25,11 +40,10 @@ export const deleteMovie = (id:number) => {
 
 export const addMovie = (name: string, score: number) => {
   const newMovie = {
-    id: movies.length,
+    id: movies.length + 1,
     name,
     score
   };
   movies.push(newMovie);
   return newMovie;
 };
-*/
